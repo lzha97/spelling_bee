@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Spelling Bee</title>
+        <link rel="stylesheet" href = "spelling_bee.css">
+    </head>
+    <body>
+            <ul id="hexGrid">
+                    <li class="hex">
+                      <div class="hexIn">
+                        <a class="hexLink" href="#">
+                          
+                          <p>C</p>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="hex">
+                      <div class="hexIn">
+                        <a class="hexLink" href="#">
+                          
+                          <p>X</p>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="hex">
+                      <div class="hexIn">
+                        <a class="hexLink" href="#">
+            
+                          <p>E</p>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="hex">
+                      <div class="hexIn">
+                        <a id="center-letter" class="hexLink" href="#" style="background-color:#b7afafe6;">
+                          
+                          <p>P</p>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="hex">
+                      <div class="hexIn">
+                        <a class="hexLink" href="#">
+                          
+                          <p>A</p>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="hex">
+                      <div class="hexIn">
+                        <a class="hexLink" href="#">
+                          
+                          <p>N</p>
+                        </a>
+                      </div>
+                    </li>
+                    <li class="hex">
+                      <div class="hexIn">
+                        <a class="hexLink" href="#">
+                          
+                          <p>T</p>
+                        </a>
+                      </div>
+                    </li>
+                    
+                   
+                    
+                    
+                  </ul>
+
+    </body>
+</html>
+
+
+<script> 
+function generate_letters(length){
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+    var charactersLength = characters.length; 
+    for(var i =0; i<length; i++){
+        result += characters.charAt(Math.floor(Math.random()*charactersLength));
+    }
+    return result  
+}
+</script>

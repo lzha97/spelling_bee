@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    
+  }
+  #hexGrid {
+    display: grid;
+    grid-gap:10px;
+    grid-template-columns: repeat(4,fr);
+    width: 350px;
+    margin: 0 auto;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    list-style-type: none;
+    overflow:hidden;
+    
+  }
+  
+
+  .hex {
+    grid-column-end: span 2;
+    position: relative;
+    visibility:hidden;
+    background-color:solid yellow;
+    outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+  }
+ 
+  .hex::after{
+    content:'';
+    display:block;
+    padding-bottom: 86.602%;  /* =  100 / tan(60) * 1.5 */
+  }
+  .hexIn{
+    position: absolute;
+    width:100%;
+    padding-bottom: 115.470%; /* =  width / sin(60) */
+    overflow: hidden;
+    visibility: hidden;
+    outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+    -webkit-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+        -ms-transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+            transform: rotate3d(0,0,1,-60deg) skewY(30deg);
+  }
+  .hexIn * {
+    position: absolute;
+    visibility: visible;
+    outline:1px solid transparent; /* fix for jagged edges in FF on hover transition */
+  }
+  .hexLink {
+    display:block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: #ffd300d1;
+    overflow: hidden;
+    -webkit-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+        -ms-transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+            transform: skewY(-30deg) rotate3d(0,0,1,60deg);
+  }
+  
+  /*** HEX CONTENT **********************************************************************/
+
+  .hex p {
+    width: 100%;
+    padding: 42%;
+    box-sizing:border-box;
+    background-color:transparent;
+    font-weight: 550;
+    font-size:30px;
+    color:black;
+    font: bold;
+  }
+/*** HEX HOVER **********************************************************************/
+  .hexLink:hover p, .hexLink:focus p{
+    background-color: #ffb103c2
+  }
+
+  #center-letter.hexLink:hover p, #center-letter.hexLink:focus p{
+    background-color: gray
+  }
+
+  /*** HEXAGON SIZING AND EVEN ROW INDENTATION *****************************************************************/
+  
+    #hexGrid{
+      grid-template-columns: repeat(6,2fr);
+      padding-bottom: 7.4%;
+    }
+    .hex:nth-child(5n+1){ /* first hexagon of odd rows */
+      grid-column-start: 2;
+    }
+    .hex:nth-child(5n+3){ /* first hexagon of even rows */
+        grid-column-start: 1;
+      }
+  
+
