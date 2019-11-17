@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <html>
@@ -137,15 +138,42 @@ var clickLetter = function(letter){
   }
 }
 
+var discoveredWords =[]
 function submitWord(){
   var tryword = document.getElementById('testword');
-  if (validWords.includes(tryword.value.toLowerCase())){
+  var centerLetter = document.getElementById('center-letter').firstChild.innerHTML; 
+
+  if(tryword.value.length < 4){
+    alert('Word must be at least 4 characters')
+  }else if(discoveredWords.includes(tryword.value.toLowerCase())){
+    alert('Word has already been found.')
+  }else if(!tryword.value.toLowerCase().includes(centerLetter.toLowerCase())){
+    alert('Word doesn\'t contain center letter!');
+  }else if(validWords.includes(tryword.value.toLowerCase())){
     showDiscoveredWord(tryword);
+    discoveredWords.push(tryword.value.toLowerCase());
     alert('Valid Word!');
   }else{
     alert('Word Doesn\'t Exist');
   }
   tryword.value = '';
+}
+
+
+function showDiscoveredWord(input){
+    var discWords = document.getElementById("discoveredWords");
+
+    var numChildren = discWords.childElementCount; 
+    if (numChildren == validWords.length){
+      alert("You have found all of the possible words! Thanks for playing");
+    } else{
+      var listword = document.createElement("LI");
+      var pword = document.createElement("P");
+      pword.innerHTML = input.value; 
+      listword.appendChild(pword);
+      discWords.appendChild(listword);
+    }
+    
 }
 
 /*
@@ -155,12 +183,8 @@ function clearField(input){
   }
 }*/
 
-function showDiscoveredWord(input){
-    var discWords = document.getElementById("discoveredWords");
-    var listword = document.createElement("LI");
-    var pword = document.createElement("P");
-    pword.innerHTML = input.value; 
-    listword.appendChild(pword);
-    discWords.appendChild(listword);
-}
 </script>
+
+
+
+
