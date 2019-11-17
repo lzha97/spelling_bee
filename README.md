@@ -1,3 +1,3 @@
 # spelling_bee
 
-To make the hexagonal grid, I looked at this code https://www.codesmite.com/article/how-to-create-pure-css-hexagonal-grids
+Code for hexagonal grid derived from here: https://github.com/web-tiki/responsive-grid-of-hexagons
