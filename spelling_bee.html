@@ -71,6 +71,7 @@
             <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:40px;">
               <p>Enter Letters:</p> 
               <button type="button" onclick="submitWord()">Submit Word</button>
+              <button type="button" onclick="deleteLetter()">Delete</button>
               <input id="testword" type="text" class="rq-form-element" style="height:40px; margin-bottom:40px;"/>
               
                 <!--<i style="align-self:center;"></i>-->
@@ -89,9 +90,24 @@
 <script> 
 
 var validWords = ["expectant","accept","acceptance","acceptant","apace","apex","apnea","canape",'cape','catnap','epee','except','expat','expect','nape','neap','pace','pact','paean','panacea','pancetta','pane','pant','papa','pate','patent','patentee','peace','peat','pecan','peccant','peen','peep','penance','pence','pennant','penne','pent','pentane','tapa','tape','teepee','tepee'];
+var letters = ['E', 'X', 'T', 'P', 'A', 'N', 'C'];
+
+document.getElementById("testword").addEventListener("keydown", function(event){
+  if(!letters.includes(event.key.toUpperCase())){
+    alert('Invalid Letter Typed')
+    event.preventDefault();
+  }
+}
+)
+
+function deleteLetter(){
+  var tryword = document.getElementById("testword");
+  var trywordTrimmed = tryword.value.substring(0, tryword.value.length-1);
+  tryword.value = trywordTrimmed;
+}
 
 function initialize_letters(){
-    var letters = ['E', 'X', 'T', 'P', 'A', 'N', 'C'];
+    
     var hexgrid = document.getElementById('hexGrid')
     for(var i=0; i<letters.length; i++){
         var char = letters[i];
@@ -134,7 +150,7 @@ function generate_letters(length){
 var clickLetter = function(letter){
   return function curried_func(e){
     var tryword = document.getElementById("testword");
-    tryword.value = tryword.value + letter;
+    tryword.value = tryword.value + letter.toLowerCase();
   }
 }
 
