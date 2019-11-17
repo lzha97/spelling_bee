@@ -67,14 +67,20 @@
                     </li>-->
             </ul>
  
-            <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; ">
+            <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:40px;">
               <p>Enter Letters:</p> 
               <button type="button" onclick="submitWord()">Submit Word</button>
-              <input id="testword" type="text" class="rq-form-element" style="height:40px;"/>
+              <input id="testword" type="text" class="rq-form-element" style="height:40px; margin-bottom:40px;"/>
               
                 <!--<i style="align-self:center;"></i>-->
             </div>
 
+            <div style="align-self:center">
+              <p >Words Discovered:</p>
+              <ul id="discoveredWords">
+
+              </ul>
+            </div>
             
     </body>
 </html>
@@ -134,6 +140,7 @@ var clickLetter = function(letter){
 function submitWord(){
   var tryword = document.getElementById('testword');
   if (validWords.includes(tryword.value.toLowerCase())){
+    showDiscoveredWord(tryword);
     alert('Valid Word!');
   }else{
     alert('Word Doesn\'t Exist');
@@ -141,10 +148,19 @@ function submitWord(){
   tryword.value = '';
 }
 
+/*
 function clearField(input){
   if (input.value != ''){
     input.value = '';
   }
+}*/
 
+function showDiscoveredWord(input){
+    var discWords = document.getElementById("discoveredWords");
+    var listword = document.createElement("LI");
+    var pword = document.createElement("P");
+    pword.innerHTML = input.value; 
+    listword.appendChild(pword);
+    discWords.appendChild(listword);
 }
 </script>

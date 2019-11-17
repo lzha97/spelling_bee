@@ -5,6 +5,9 @@
   body {
     align-content:center;
     vertical-align:center;
+    display:flex;
+    flex-direction: column;
+    justify-content:center; 
   }
   #hexGrid {
     display: grid;
