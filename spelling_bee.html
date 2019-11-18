@@ -5,202 +5,30 @@
     <head>
         <title>Spelling Bee</title>
         <link rel="stylesheet" href = "spelling_bee.css">
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
-    <body onload="initialize_letters()">
-      <h1 style="text-align: center; margin-top:50px; margin-bottom:50px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Spelling Bee Game </h1>
-            <ul id="hexGrid">
-              <!--
-                    <li class="hex">
-                      <div class="hexIn">
-                        <a class="hexLink" href="#">
-                          
-                          <p>C</p>
-                        </a>
-                      </div>
-                    </li>
-                    <li class="hex">
-                      <div class="hexIn">
-                        <a class="hexLink" href="#">
-                          
-                          <p>X</p>
-                        </a>
-                      </div>
-                    </li>
-                    <li class="hex">
-                      <div class="hexIn">
-                        <a class="hexLink" href="#">
-            
-                          <p>E</p>
-                        </a>
-                      </div>
-                    </li>
-                    <li class="hex">
-                      <div class="hexIn">
-                        <a id="center-letter" class="hexLink" href="#" style="background-color:#b7afafe6;">
-                          
-                          <p>P</p>
-                        </a>
-                      </div>
-                    </li>
-                    <li class="hex">
-                      <div class="hexIn">
-                        <a class="hexLink" href="#">
-                          
-                          <p>A</p>
-                        </a>
-                      </div>
-                    </li>
-                    <li class="hex">
-                      <div class="hexIn">
-                        <a class="hexLink" href="#">
-                          
-                          <p>N</p>
-                        </a>
-                      </div>
-                    </li>
-                    <li class="hex">
-                      <div class="hexIn">
-                        <a class="hexLink" href="#">
-                          
-                          <p>T</p>
-                        </a>
-                      </div>
-                    </li>-->
-            </ul>
- 
-            <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:40px;">
-              <p>Enter Letters:</p> 
-              <button type="button" onclick="submitWord()">Submit Word</button>
-              <button type="button" onclick="deleteLetter()">Delete</button>
-              <input id="testword" type="text" class="rq-form-element" style="height:40px; margin-bottom:40px;"/>
-              
-                <!--<i style="align-self:center;"></i>-->
-            </div>
+    <body onload="get_valid_words()">
+        <h1 style="text-align: center; margin-top:50px; margin-bottom:50px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Spelling Bee Game </h1>
+        <ul id="hexGrid">
+          
+        </ul>
 
-            <div style="align-self:center">
-              <p >Words Discovered:</p>
-              <ul id="discoveredWords">
+        <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:40px;">
+          <p>Enter Letters:</p> 
+          <button type="button" onclick="submitWord()">Submit Word</button>
+          <button type="button" onclick="deleteLetter()">Delete</button>
+          <input id="testword" type="text" class="rq-form-element" style="height:40px; margin-bottom:40px;"/>
+            <!--<i style="align-self:center;"></i>-->
+        </div>
 
-              </ul>
-            </div>
+        <div style="align-self:center">
+          <p >Words Discovered:</p>
+          <ul id="discoveredWords">
+
+          </ul>
+        </div>
             
     </body>
 </html>
 
-<script> 
-
-var validWords = ["expectant","accept","acceptance","acceptant","apace","apex","apnea","canape",'cape','catnap','epee','except','expat','expect','nape','neap','pace','pact','paean','panacea','pancetta','pane','pant','papa','pate','patent','patentee','peace','peat','pecan','peccant','peen','peep','penance','pence','pennant','penne','pent','pentane','tapa','tape','teepee','tepee'];
-var letters = ['E', 'X', 'T', 'P', 'A', 'N', 'C'];
-
-document.getElementById("testword").addEventListener("keydown", function(event){
-  if(!letters.includes(event.key.toUpperCase())){
-    alert('Invalid Letter Typed')
-    event.preventDefault();
-  }
-}
-)
-
-function deleteLetter(){
-  var tryword = document.getElementById("testword");
-  var trywordTrimmed = tryword.value.substring(0, tryword.value.length-1);
-  tryword.value = trywordTrimmed;
-}
-
-function initialize_letters(){
-    
-    var hexgrid = document.getElementById('hexGrid')
-    for(var i=0; i<letters.length; i++){
-        var char = letters[i];
-        
-        var pElement = document.createElement("P");
-        pElement.innerHTML = char;
-        
-        var aElement = document.createElement("A");
-        aElement.className = "hexLink";
-        aElement.href = "#";
-        aElement.appendChild(pElement);
-        aElement.addEventListener('click', clickLetter(char), false);
-
-        var divElement = document.createElement('DIV');
-        divElement.className = "hexIn"; 
-        divElement.appendChild(aElement);
-        
-        var hexElement = document.createElement("LI");
-        hexElement.className = "hex";
-        hexElement.appendChild(divElement);
-        if(i==3){
-          aElement.id = "center-letter";
-        }
-        hexgrid.appendChild(hexElement);
-    }
-
-}
-
-function generate_letters(length){
-    var result = '';
-    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
-    var charactersLength = characters.length; 
-    for(var i =0; i<length; i++){
-        result += characters.charAt(Math.floor(Math.random()*charactersLength));
-    }
-    return result  
-}
-
-var clickLetter = function(letter){
-  return function curried_func(e){
-    var tryword = document.getElementById("testword");
-    tryword.value = tryword.value + letter.toLowerCase();
-  }
-}
-
-var discoveredWords =[]
-function submitWord(){
-  var tryword = document.getElementById('testword');
-  var centerLetter = document.getElementById('center-letter').firstChild.innerHTML; 
-
-  if(tryword.value.length < 4){
-    alert('Word must be at least 4 characters')
-  }else if(discoveredWords.includes(tryword.value.toLowerCase())){
-    alert('Word has already been found.')
-  }else if(!tryword.value.toLowerCase().includes(centerLetter.toLowerCase())){
-    alert('Word doesn\'t contain center letter!');
-  }else if(validWords.includes(tryword.value.toLowerCase())){
-    showDiscoveredWord(tryword);
-    discoveredWords.push(tryword.value.toLowerCase());
-    alert('Valid Word!');
-  }else{
-    alert('Word Doesn\'t Exist');
-  }
-  tryword.value = '';
-}
-
-
-function showDiscoveredWord(input){
-    var discWords = document.getElementById("discoveredWords");
-
-    var numChildren = discWords.childElementCount; 
-    if (numChildren == validWords.length){
-      alert("You have found all of the possible words! Thanks for playing");
-    } else{
-      var listword = document.createElement("LI");
-      var pword = document.createElement("P");
-      pword.innerHTML = input.value; 
-      listword.appendChild(pword);
-      discWords.appendChild(listword);
-    }
-    
-}
-
-/*
-function clearField(input){
-  if (input.value != ''){
-    input.value = '';
-  }
-}*/
-
-</script>
-
-
-
-
+<script type="text/javascript" src="./spelling_bee.js"></script>
