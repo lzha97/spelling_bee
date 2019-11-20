@@ -179,14 +179,12 @@ function addToTotalScore(score) {
 function calculateWordScore(input, isPangram) {
   let len = input.value.length;
   let returnScore = 1; 
-  console.log("word length: " + len);
   if(len > 4) {
-    returnScore += (len - 4);
+    returnScore = len;
   }
   if(isPangram) {
-    returnScore += (len - 4) + 7;
+    returnScore = len + 7;
   }
-  console.log("score: " + returnScore);
   return returnScore;
 }
 
