@@ -2,6 +2,7 @@
 var validWords=[];
 var letters = '';
 var discoveredWords =[];
+var totalScore = 0;
 
 function generate_letters(length){
   var result = '';
@@ -123,7 +124,10 @@ function deleteLetter(){
 //word can't already be found 
 function submitWord(){
   var tryword = document.getElementById('testword');
-  var centerLetter = document.getElementById('center-letter').firstChild.innerHTML; 
+  var centerLetter = document.getElementById('center-letter').firstChild.innerHTML;
+
+  let score = 0;
+  var showScore = document.getElementById("totalScore");
 
   if(tryword.value.length < 4){
     alert('Word must be at least 4 characters')
@@ -132,6 +136,8 @@ function submitWord(){
   }else if(!tryword.value.toLowerCase().includes(centerLetter.toLowerCase())){
     alert('Word doesn\'t contain center letter!');
   }else if(validWords.includes(tryword.value.toLowerCase())){
+    addToTotalScore(calculateWordScore(tryword));
+    showScore.innerHTML = totalScore;
     showDiscoveredWord(tryword);
     discoveredWords.push(tryword.value.toLowerCase());
     alert('Valid Word!');
@@ -166,7 +172,22 @@ function clearField(input){
   }
 }*/
 
+function addToTotalScore(score) {
+  totalScore += score;
+}
 
-
+function calculateWordScore(input, isPangram) {
+  let len = input.value.length;
+  let returnScore = 1; 
+  console.log("word length: " + len);
+  if(len > 4) {
+    returnScore += (len - 4);
+  }
+  if(isPangram) {
+    returnScore += (len - 4) + 7;
+  }
+  console.log("score: " + returnScore);
+  return returnScore;
+}
 
 
