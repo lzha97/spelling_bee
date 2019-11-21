@@ -12,11 +12,12 @@ function generate_letters(length){
   for(var i =0; i<length; i++){
       result += characters.charAt(Math.floor(Math.random()*charactersLength));
   }
-  letters = result.toUpperCase();  
+  letters = result.toUpperCase();
   return letters.toLowerCase();
 }
 
 function valid_generated_letters(letters){
+  //current scheme: if there are between 1-3 vowerls, a word is 'valid'.
   var vowels = ['a', 'e', 'i', 'o', 'u'];
   var count = 0; 
   for(var i=0; i<letters.length; i++){
@@ -44,11 +45,15 @@ function get_valid_words(){
     request.open('GET', url, true);
     request.onreadystatechange = function(){
         var data = JSON.parse(this.response);
-        if(request.readyState ==3 && request.status == 200){
+        if(request.readyState == 3 && request.status == 200){
           console.log(data)
-          initialize_letters();
           validWords = data;
-        }else{
+          if(validWords.length < 20) {
+            get_valid_words();
+          } else {
+            initialize_letters();
+          }
+        } else{
           console.log('error')
         }
     };
