@@ -135,10 +135,12 @@ function showDiscoveredWord(input){
     
 }
 
+//adds input "score" to the total score of user
 function addToTotalScore(score) {
   totalScore += score;
 }
 
+//calculates the score of input "input" and also adjusts if "input" is a pangram 
 function calculateWordScore(input, isPangram) {
   let len = input.value.length;
   let returnScore = 1; 
@@ -151,6 +153,7 @@ function calculateWordScore(input, isPangram) {
   return returnScore;
 }
 
+//checks if "input" word is a pangram
 function checkPangram(input) {
   
   var i;
@@ -174,6 +177,7 @@ function checkPangram(input) {
  return false;
 }
 
+//takes keyboard event from user and determines what should be done
 function input_from_keyboard(event) {
   console.log("detected a hit from a key boardy");
     var tryword = document.getElementById("testword");
