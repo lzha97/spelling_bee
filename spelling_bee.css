@@ -160,5 +160,13 @@ h1 {
 }
 
 ul {
-  display:inline-block;
+  /*display:inline-block;*/
+  list-style-type: none;
+  text-align: center;
+}
+
+.discoveredText {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  align-self:center;
 }
