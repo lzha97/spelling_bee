@@ -4,6 +4,7 @@ var letters = '';
 var discoveredWords =[];
 var totalScore = 0;
 
+/*
 function generate_letters(length){
   var result = '';
   var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -14,8 +15,9 @@ function generate_letters(length){
   }
   letters = result.toUpperCase();
   return letters.toLowerCase();
-}
+}*/
 
+/*
 function valid_generated_letters(letters){
   //current scheme: if there are between 1-3 vowerls, a word is 'valid'.
   var vowels = ['a', 'e', 'i', 'o', 'u'];
@@ -31,6 +33,7 @@ function valid_generated_letters(letters){
     return false;
   }
 }
+*/
 
 function get_valid_words(){
     var letters = generate_letters(7);
@@ -38,7 +41,7 @@ function get_valid_words(){
     while(!valid_generated_letters(letters)){
       letters = generate_letters(7);
     }
-    const url='https://uxxjtb4jz0.execute-api.us-east-1.amazonaws.com/default/FindValidWords?letters=' + letters;
+    const url='https://uxxjtb4jz0.execute-api.us-east-1.amazonaws.com/default/FindValidWords';
     console.log(url)
 
     var request = new XMLHttpRequest(); 
@@ -48,11 +51,8 @@ function get_valid_words(){
         if(request.readyState == 3 && request.status == 200){
           console.log(data)
           validWords = data;
-          if(validWords.length < 20) {
-            get_valid_words();
-          } else {
-            initialize_letters();
-          }
+          initialize_letters();
+          
         } else{
           console.log('error')
         }
