@@ -150,7 +150,7 @@ function calculateWordScore(input, isPangram) {
 }
 
 function checkPangram(input) {
-  /*
+  
   var i;
   var containsCount = 0;
   var containsAllLetters = new Boolean(false);
@@ -164,11 +164,17 @@ function checkPangram(input) {
   }
   console.log("isPangram?: " + containsAllLetters);
   return containsAllLetters;
-  */
- if(input==pangram){
-   return true;
- }
+  
+  // console.log(input.value);
+  // if(input==pangram){
+  //  return true;
+  // }
  return false;
 }
 
-
+function input_from_keyboard(event) {
+  console.log("detected a hit from a key boardy");
+    var tryword = document.getElementById("testword");
+    tryword.value = tryword.value + String.fromCharCode(event.keyCode).toLowerCase();
+    console.log(tryword.value);
+}

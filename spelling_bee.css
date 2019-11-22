@@ -67,6 +67,12 @@
   #center-letter{
     background-color:#b7afafe6;
   }
+
+  input[type="text"]
+  {
+      background: transparent;
+      border: none;
+  }
   
   /*** HEX CONTENT **********************************************************************/
 
