@@ -17,7 +17,6 @@ function get_valid_words(){
       try {
         var data = JSON.parse(this.response);
         //3 is LOADING, 4 is DONE
-        console.log(request.readyState);
         if(request.readyState == 3 && request.status == 200){
           console.log(data)
           letters = data['letters'];

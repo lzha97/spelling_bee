@@ -145,4 +145,20 @@
         to { opacity: 0; }
     }
   
+/*** TEXT **********************************************************************/
+h1 {
+  text-align: center;
+  margin-top:50px; 
+  margin-bottom:50px; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+.scoreText {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  align-self:center;
+}
+
+ul {
+  display:inline-block;
+}
