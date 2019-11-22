@@ -79,8 +79,10 @@ var clickLetter = function(letter){
 
 //Deletes the last letter of the string in the textbox
 function deleteLetter(){
+  console.log("in del letter");
   var tryword = document.getElementById("testword");
   var trywordTrimmed = tryword.value.substring(0, tryword.value.length-1);
+  console.log(trywordTrimmed);
   tryword.value = trywordTrimmed;
 }
 
@@ -175,6 +177,18 @@ function checkPangram(input) {
 function input_from_keyboard(event) {
   console.log("detected a hit from a key boardy");
     var tryword = document.getElementById("testword");
-    tryword.value = tryword.value + String.fromCharCode(event.keyCode).toLowerCase();
-    console.log(tryword.value);
+
+    if(event.keyCode == 13) {
+      submitWord();
+    }
+
+    if(event.keyCode == 8) {
+      deleteLetter();
+    }
+
+    //validation for just alphabet letters input
+    if(event.keyCode >= 97 && event.keyCode <= 122 ||
+      event.keyCode >=65 && event.keyCode <=90) {
+      tryword.value = tryword.value + String.fromCharCode(event.keyCode).toLowerCase();
+    }
 }
