@@ -21,6 +21,15 @@
     overflow:hidden;
     
   }
+
+  .inputBar {
+     margin: 0 auto;
+     height:40px; 
+     margin-bottom:40px;  
+     text-align: center;  
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     font-size: 35px;
+  }
   
 
   .hex {

@@ -10,20 +10,25 @@ function get_valid_words(){
 
     const url='https://uxxjtb4jz0.execute-api.us-east-1.amazonaws.com/default/FindValidWords';
 
-    var request = new XMLHttpRequest(); 
+    var request = new XMLHttpRequest();
     request.open('GET', url, true);
+    request.setRequestHeader("Content-type", "text/plain");
     request.onreadystatechange = function(){
+      try {
         var data = JSON.parse(this.response);
+        //3 is LOADING, 4 is DONE
+        console.log(request.readyState);
         if(request.readyState == 3 && request.status == 200){
           console.log(data)
           letters = data['letters'];
           validWords = data['possible_words'];
           pangram = data['pangram'];
           initialize_letters();
-          
-        } else{
-          console.log('error')
-        };
+        }
+      } 
+      catch (e){
+        console.log('error')
+      };
     };
     request.send();
 }
@@ -79,10 +84,8 @@ var clickLetter = function(letter){
 
 //Deletes the last letter of the string in the textbox
 function deleteLetter(){
-  console.log("in del letter");
   var tryword = document.getElementById("testword");
   var trywordTrimmed = tryword.value.substring(0, tryword.value.length-1);
-  console.log(trywordTrimmed);
   tryword.value = trywordTrimmed;
 }
 
@@ -179,7 +182,6 @@ function checkPangram(input) {
 
 //takes keyboard event from user and determines what should be done
 function input_from_keyboard(event) {
-  console.log("detected a hit from a key boardy");
     var tryword = document.getElementById("testword");
 
     if(event.keyCode == 13) {

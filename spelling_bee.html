@@ -9,15 +9,16 @@
     </head>
     <body onload="get_valid_words()" onkeydown="input_from_keyboard(event)">
         <h1 style="text-align: center; margin-top:50px; margin-bottom:50px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Spelling Bee Game </h1>
+        <!-- <p>Enter Letters:</p>  -->
+        <input id="testword" type="text" class="rq-form-element inputBar"/>
         <ul id="hexGrid">
           
         </ul>
 
         <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:40px;">
-          <p>Enter Letters:</p> 
+          
           <button type="button" onclick="submitWord()">Submit Word</button>
           <button type="button" onclick="deleteLetter()">Delete</button>
-          <input id="testword" type="text" class="rq-form-element" style="height:40px; margin-bottom:40px;"/>
             <!--<i style="align-self:center;"></i>-->
         </div>
 
