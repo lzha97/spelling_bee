@@ -12,11 +12,12 @@ function generate_letters(length){
   for(var i =0; i<length; i++){
       result += characters.charAt(Math.floor(Math.random()*charactersLength));
   }
-  letters = result.toUpperCase();  
+  letters = result.toUpperCase();
   return letters.toLowerCase();
 }
 
 function valid_generated_letters(letters){
+  //current scheme: if there are between 1-3 vowerls, a word is 'valid'.
   var vowels = ['a', 'e', 'i', 'o', 'u'];
   var count = 0; 
   for(var i=0; i<letters.length; i++){
@@ -44,11 +45,15 @@ function get_valid_words(){
     request.open('GET', url, true);
     request.onreadystatechange = function(){
         var data = JSON.parse(this.response);
-        if(request.readyState ==3 && request.status == 200){
+        if(request.readyState == 3 && request.status == 200){
           console.log(data)
-          initialize_letters();
           validWords = data;
-        }else{
+          if(validWords.length < 20) {
+            get_valid_words();
+          } else {
+            initialize_letters();
+          }
+        } else{
           console.log('error')
         }
     };
@@ -127,6 +132,7 @@ function submitWord(){
   var centerLetter = document.getElementById('center-letter').firstChild.innerHTML;
 
   let score = 0;
+  var isPangram = new Boolean(false);
   var showScore = document.getElementById("totalScore");
 
   if(tryword.value.length < 4){
@@ -136,7 +142,8 @@ function submitWord(){
   }else if(!tryword.value.toLowerCase().includes(centerLetter.toLowerCase())){
     alert('Word doesn\'t contain center letter!');
   }else if(validWords.includes(tryword.value.toLowerCase())){
-    addToTotalScore(calculateWordScore(tryword));
+    isPangram = checkPangram(tryword);
+    addToTotalScore(calculateWordScore(tryword, isPangram));
     showScore.innerHTML = totalScore;
     showDiscoveredWord(tryword);
     discoveredWords.push(tryword.value.toLowerCase());
@@ -186,6 +193,22 @@ function calculateWordScore(input, isPangram) {
     returnScore = len + 7;
   }
   return returnScore;
+}
+
+function checkPangram(input) {
+  var i;
+  var containsCount = 0;
+  var containsAllLetters = new Boolean(false);
+  for(i = 0; i < 7; i++) {
+    if(input.value.includes(letters[i])) {
+      containsCount++;
+    }
+  }
+  if(containsCount == 7) {
+    containsAllLetters = new Boolean(true);
+  }
+  console.log("isPangram?: " + containsAllLetters);
+  return containsAllLetters;
 }
 
 
