@@ -86,6 +86,9 @@ function deleteLetter(){
   var tryword = document.getElementById("testword");
   var trywordTrimmed = tryword.value.substring(0, tryword.value.length-1);
   tryword.value = trywordTrimmed;
+  if(!checkIncorrectLetters(tryword.value)) {
+      tryword.style.color = 'black';
+  }
 }
 
 //check if the word is valid and clear the input box
@@ -99,6 +102,10 @@ function submitWord(){
   let score = 0;
   var isPangram = new Boolean(false);
   var showScore = document.getElementById("totalScore");
+
+  if(tryword.style.color == 'grey') {
+    alert('Word contains incorrect letters');
+  }
 
   if(tryword.value.length < 4){
     alert('Word must be at least 4 characters')
@@ -179,6 +186,20 @@ function checkPangram(input) {
  return false;
 }
 
+function checkIncorrectLetters(input) {
+  var i;
+  var badLetterCount = 0;
+  for(i = 0; i < input.length; i++) {
+    if(!letters.includes(input[i])) {
+      badLetterCount++;
+    }
+  }
+  if(badLetterCount > 0) {
+    return true;
+  }
+  return false;
+}
+
 //takes keyboard event from user and determines what should be done
 function input_from_keyboard(event) {
     var tryword = document.getElementById("testword");
@@ -195,5 +216,8 @@ function input_from_keyboard(event) {
     if(event.keyCode >= 97 && event.keyCode <= 122 ||
       event.keyCode >=65 && event.keyCode <=90) {
       tryword.value = tryword.value + String.fromCharCode(event.keyCode).toLowerCase();
+      if(checkIncorrectLetters(tryword.value)) {
+        tryword.style.color = 'grey';
+      }
     }
 }
