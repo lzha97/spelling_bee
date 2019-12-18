@@ -99,13 +99,13 @@ function shuffleLetters() {
 }
 
 //Validate whether letter typed into input box was from one of 7 available letters
-document.getElementById("testword").addEventListener("keydown", function(event){
-    if(!letters.includes(event.key.toUpperCase())){
-        alert('Invalid Letter Typed')
-        event.preventDefault();
-    }
-  }
-  )
+// document.getElementById("testword").addEventListener("keydown", function(event){
+//     if(!letters.includes(event.key.toUpperCase())){
+//         alert('Invalid Letter Typed')
+//         event.preventDefault();
+//     }
+//   }
+//   )
 
 //When letter is clicked add it to input box
 var clickLetter = function(letter){
@@ -151,6 +151,7 @@ function submitWord(){
     isPangram = checkPangram(tryword);
     addToTotalScore(calculateWordScore(tryword, isPangram));
     showScore.innerHTML = totalScore;
+    
     showDiscoveredWord(tryword);
     discoveredWords.push(tryword.value.toLowerCase());
     alert('Valid Word!');

@@ -10,16 +10,16 @@
     <body onload="get_valid_words()" onkeydown="input_from_keyboard(event)">
         <h1> Spelling Bee Game </h1>
         <!-- <p>Enter Letters:</p>  -->
-        <input id="testword" type="text" class="rq-form-element inputBar"/>
+        <div class="cursor">
+            <input id="testword" type="text" class="rq-form-element inputBar"/>
+        </div>
+        <!-- <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:360px;"> -->
         <ul id="hexGrid">
           
         </ul>
-
-        <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:40px;">
-          
-          <button type="button" onclick="submitWord()">Submit Word</button>
-          <button type="button" onclick="shuffleLetters()">Shuffle</button>
-          <button type="button" onclick="deleteLetter()">Delete</button>
+          <button type="button" class="button" onclick="submitWord()">Submit Word</button>
+          <button type="button" class="button" onclick="shuffleLetters()">Shuffle</button>
+          <button type="button" class="button" onclick="deleteLetter()">Delete</button>
             <!--<i style="align-self:center;"></i>-->
         </div>
 
