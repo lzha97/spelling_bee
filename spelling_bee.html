@@ -7,26 +7,28 @@
         <link rel="stylesheet" href = "spelling_bee.css">
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
-    <body onload="get_valid_words()" onkeypress="input_from_keyboard(event)">
-        <h1 style="text-align: center; margin-top:50px; margin-bottom:50px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"> Spelling Bee Game </h1>
-        <ul id="hexGrid">
+    <body onload="get_valid_words()" onkeydown="input_from_keyboard(event)">
+        <h1> Spelling Bee Game </h1>
+        <!-- <p>Enter Letters:</p>  -->
+        <div class="cursor">
+            <input id="testword" type="text" class="rq-form-element inputBar"/>
+        </div>
+        <!-- <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:360px;"> -->
+        <ul style="justify-content:center" id="hexGrid">
           
-        </ul>
-
-        <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:40px;">
-          <p>Enter Letters:</p> 
-          <button type="button" onclick="submitWord()">Submit Word</button>
-          <button type="button" onclick="deleteLetter()">Delete</button>
-          <input id="testword" type="text" class="rq-form-element" style="height:40px; margin-bottom:40px;"/>
+        </ul style="justify-content:center">
+          <button type="button" class="button" onclick="submitWord()">Submit Word</button>
+          <button type="button" class="button" onclick="shuffleLetters()">Shuffle</button>
+          <button type="button" class="button" onclick="deleteLetter()">Delete</button>
             <!--<i style="align-self:center;"></i>-->
         </div>
 
-        <div style="align-self:center">
-          <p>Score: <ul id="totalScore"></ul></p> 
-          <p >Words Discovered:</p>
-          <ul id="discoveredWords">
+        <div class="scoreText">Score: 
+          <ul id="totalScore"></ul>
+        </div>
 
-          </ul>
+        <div class="discoveredText">Words Discovered:
+          <ul id="discoveredWords"></ul>
         </div>
             
     </body>

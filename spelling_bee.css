@@ -21,6 +21,15 @@
     overflow:hidden;
     
   }
+
+  .inputBar {
+     margin: 0 auto;
+     height:50px; 
+     margin-bottom:40px;  
+     text-align: center;  
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     font-size: 35px;
+  }
   
 
   .hex {
@@ -74,7 +83,7 @@
       border: none;
   }
   
-  /*** HEX CONTENT **********************************************************************/
+  /*** HEX CONTENT *************************************************************/
 
   .hex p {
     width: 100%;
@@ -86,7 +95,7 @@
     color:black;
     font: bold;
   }
-/*** HEX HOVER **********************************************************************/
+/*** HEX HOVER *****************************************************************/
   .hexLink:hover p, .hexLink:focus p{
     background-color: #ffb103c2
   }
@@ -95,7 +104,7 @@
     background-color: gray
   }
 
-  /*** HEXAGON SIZING AND EVEN ROW INDENTATION *****************************************************************/
+  /*** HEXAGON SIZING AND EVEN ROW INDENTATION *********************************/
   
     #hexGrid{
       grid-template-columns: repeat(6,2fr);
@@ -108,11 +117,11 @@
         grid-column-start: 1;
       }
 
-/*** CURSOR **********************************************************************/
+/*** CURSOR ********************************************************************/
 
-      .cursor {
+  .cursor {
         position: relative;
-        border-width:0px;
+        margin: 0 auto;
     }
     .cursor i {
         position: relative;
@@ -136,4 +145,74 @@
         to { opacity: 0; }
     }
   
+/*** TEXT **********************************************************************/
+h1 {
+  text-align: center;
+  margin-top:50px; 
+  margin-bottom:50px; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
+.scoreText {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  align-self:center;
+}
+
+ul {
+  /*display:inline-block;*/
+  list-style-type: none;
+  text-align: center;
+}
+
+.discoveredText {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  align-self:center;
+}
+
+/*** BUTTONS *******************************************************************/
+.button {
+  background-color: #e7e7e7;
+  border: none;
+  margin: 0 auto;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 150px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: white; /* Green */
+  color: black;
+  border: 2px solid #e7e7e7;
+}
+
+/*** SPECIAL FX ****************************************************************/
+@-webkit-keyframes shake {
+    0% { -webkit-transform: translate(2px, 1px) rotate(0deg); } 
+    10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+    30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+    40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+    50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+    70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+    80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+    90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+    100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); }
+}
+.shake:hover {
+    -webkit-animation-name: shake;
+    -webkit-animation-duration: 0.5s;
+    -webkit-transform-origin:50% 50%;
+    -webkit-animation-iteration-count: infinite;
+}
+.shake {
+    display:inline-block
+}
