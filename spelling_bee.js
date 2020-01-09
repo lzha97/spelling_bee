@@ -12,6 +12,7 @@ function get_valid_words(){
 
     var request = new XMLHttpRequest(); 
     request.open('GET', url, true);
+
     request.onreadystatechange = function(){
         var data = JSON.parse(this.response);
         if(request.readyState == 3 && request.status == 200){
