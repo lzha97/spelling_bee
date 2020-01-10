@@ -14,10 +14,10 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto+Slab:300,400,500,600,700&display=swap" rel="stylesheet">
     </head>
     <body onload="get_valid_words()" onkeydown="input_from_keyboard(event)">
-        <h1> Spelling Bee</h1>
+        <h1> Spelling Bee Game</h1>
 
         <!-- NOTIFICATIONS -->
-        <div class="container" style="height:50px;">
+        <div class="container" style="height:50px; align-items:center;">
             <p id="too-short" class="notifications">Too Short</p>
             <p id="good" class="notifications">Good!</p>
             <p id="already-found" class="notifications">Already Found</p>
@@ -46,15 +46,14 @@
               
             </div>
         </div>
-
-        <div class="scoreText">Score: 
-          <ul id="totalScore"></ul>
+        <div class="container" style="height:400px; justify-content:normal;" id="scoreboard">
+              <div class="scoreText" style="margin-bottom:8px;">You have found <span id="numfound">0</span> word(s).</div>
+              <div class="scoreText" style="margin-bottom:8px;">Score: <span id="score">0</span>/<span id="maxscore">0</span>.</div>
+              <div style=" font-family: 'Open Sans',  sans-serif; align-self:center; font-size: 15px; font-style:bold; font-weight:200; text-decoration: underline;">Words Discovered</div>
+              <div id="discoveredText" >
+              </div>
         </div>
-
-        <div class="discoveredText">Words Discovered:
-          <ul id="discoveredWords"></ul>
-        </div>
-            
+         
     </body>
 </html>
 

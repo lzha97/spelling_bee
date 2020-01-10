@@ -12,8 +12,12 @@
 
   .container {
     display:flex;
-    align-items:center;
     justify-content:center;
+  }
+
+  #scoreboard{
+    flex-direction:column;
+
   }
 
   #hexGrid {
@@ -151,7 +155,8 @@ h1 {
 
 .scoreText {
   font-family: 'Open Sans', sans-serif;
-  font-size: 20px;
+  font-size: 15px;
+  font-weight:100;
   align-self:center;
 }
 
@@ -161,10 +166,19 @@ ul {
   text-align: center;
 }
 
-.discoveredText {
+#discoveredText {
   font-family: 'Open Sans',  sans-serif;
-  font-size: 20px;
+  font-size: 15px;
   align-self:center;
+  display:flex;
+  flex-direction:row;
+  flex-wrap:wrap;
+}
+
+.dwords{
+  font-weight:100;
+  padding:0
+
 }
 
 
@@ -175,7 +189,7 @@ ul {
 
 .button_container {
  display:-webkit-inline-flex; 
- margin-bottom:3vh; 
+ margin-bottom:5vh; 
  width: 300px;
  height: 10%;
 

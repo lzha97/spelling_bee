@@ -5,6 +5,8 @@ var totalScore = 0;
 var pangram = "";
 var centerLetter = "";
 var cursor = true;
+var numFound = 0;
+var maxscore = 0;
 setInterval(() => {
   if(cursor) {
     document.getElementById('cursor').style.opacity = 0;
@@ -33,7 +35,11 @@ function get_valid_words(){
           letters = data['letters'];
           validWords = data['possible_words'];
           pangram = data['pangram'];
+          maxscore = data['maxscore'];
           initialize_letters();
+          initialize_score();
+          console.log(validWords);
+
         }
       } 
       catch (e){
@@ -43,6 +49,9 @@ function get_valid_words(){
     request.send();
 }
 
+function initialize_score(){
+  document.getElementById("maxscore").innerHTML = String(maxscore);
+}
 //Creates the hexagon grid of 7 letters with middle letter as special color
 function initialize_letters(){
     
@@ -183,14 +192,17 @@ function submitWord(){
     var isPangram = checkPangram(tryword.innerHTML);
     score = calculateWordScore(tryword.innerHTML, isPangram);
     addToTotalScore(score);
-    showScore.innerHTML = totalScore;
+    //showScore.innerHTML = totalScore;
+    console.log("totalscore: " + totalScore);
     
     showDiscoveredWord(tryword.innerHTML);
-    discoveredWords.push(tryword.innerHTML.toLowerCase());
+    numFound++;
+    document.getElementById("numfound").innerHTML = numFound;
+    document.getElementById("score").innerHTML = totalScore;
     $("#good").fadeIn(1000);
     $("#good").fadeOut(500);
     clearInput();
-    
+
   }else{
     $("#invalid-word").fadeIn(1000);
     $("#invalid-word").fadeOut(500);
@@ -201,19 +213,46 @@ function submitWord(){
 //if word was valid, display it 
 //if all words are found end game.
 function showDiscoveredWord(input){
-    var discWords = document.getElementById("discoveredWords");
-
-    var numChildren = discWords.childElementCount; 
-    if (numChildren == validWords.length){
-      alert("You have found all of the possible words! Thanks for playing");
-    } else{
-      var listword = document.createElement("LI");
-      var pword = document.createElement("P");
-      pword.innerHTML = input; 
-      listword.appendChild(pword);
-      discWords.appendChild(listword);
-    }
     
+    var discText = document.getElementById("discoveredText");
+    discoveredWords.push(input.toLowerCase());
+    discoveredWords.sort() 
+    while(discText.firstChild){
+      discText.removeChild(discText.firstChild);
+    }
+
+    var numFound = discoveredWords.length; 
+    var numCol = Math.ceil(numFound/6);
+    var w = 0; 
+    for(var c=0; c<numCol; c++){
+      var list = document.createElement("UL");
+      list.id= "discovered-words"+c;
+      list.style.cssText = "padding:5px 10px; font-weight:100; ";
+      discText.appendChild(list);
+      var n = 6; 
+      if(c == numCol-1){
+        if(numFound%6 ==0){
+          if(numFound==0){
+            n = 0
+          }
+          else{
+            n=6;
+          }
+        }else{
+        n = numFound%6;}
+      }
+      for(var i=0; i<n; i++){
+        var listword = document.createElement("LI");
+        var pword = document.createElement("P");
+        pword.innerHTML = discoveredWords[w]; 
+        listword.appendChild(pword);
+        list.appendChild(listword);
+        w++;
+      }
+    }
+    if (numFound == validWords.length){
+      alert("You have found all of the possible words! Thanks for playing");
+    }
 }
 
 //adds input "score" to the total score of user
