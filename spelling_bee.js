@@ -118,28 +118,29 @@ function shuffleLetters() {
 var clickLetter = function(letter){
   return function curried_func(e){
     var tryword = document.getElementById("testword");
-    tryword.value = tryword.value + letter.toLowerCase();
+    tryword.innerHTML = tryword.innerHTML + letter.toLowerCase();
   }
 }
 
 //Deletes the last letter of the string in the textbox
 function deleteLetter(){
   var tryword = document.getElementById("testword");
-  var trywordTrimmed = tryword.value.substring(0, tryword.value.length-1);
-  tryword.value = trywordTrimmed;
-  if(!checkIncorrectLetters(tryword.value)) {
+  var trywordTrimmed = tryword.innerHTML.substring(0, tryword.innerHTML.length-1);
+  tryword.innerHTML = trywordTrimmed
+  if(!checkIncorrectLetters(trywordTrimmed)) {
       tryword.style.color = 'black';
   }
 }
 
+function wrongInput(){
 
-function notify(){
-
-
+  $( "#testword" ).effect("shake", {times:2.5}, 450, function(){clearInput()} );
+  
+  //clearInput();
 }
 
-function shakeInput(){
-  $("#testword").effect("shake", {times:10}, 1000);
+function clearInput(){
+  $("#testword").empty();
 }
 //check if the word is valid and clear the input box
 //word must be at least 4 letters
@@ -153,34 +154,34 @@ function submitWord(){
   var isPangram = new Boolean(false);
   var showScore = document.getElementById("totalScore");
 
-
-  if(tryword.value.length < 4){ 
+  if(tryword.innerHTML.length < 4){ 
+    
     $("#too-short").fadeIn(1000);
     $("#too-short").fadeOut(500);
-    shakeInput();
-  }else if(discoveredWords.includes(tryword.value.toLowerCase())){
+   wrongInput();
+    
+  }else if(discoveredWords.includes(tryword.innerHTML.toLowerCase())){
     $("#already-found").fadeIn(1000);
     $("#already-found").fadeOut(500);
-    shakeInput();
-  }else if(!tryword.value.toLowerCase().includes(centerLetter.toLowerCase())){
+    wrongInput();
+  }else if(!tryword.innerHTML.toLowerCase().includes(centerLetter.toLowerCase())){
     $("#miss-center").fadeIn(1000);
     $("#miss-center").fadeOut(500);
-    shakeInput();
-  }else if(validWords.includes(tryword.value.toLowerCase())){
-    isPangram = checkPangram(tryword);
-    addToTotalScore(calculateWordScore(tryword, isPangram));
+    wrongInput();
+  }else if(validWords.includes(tryword.innerHTML.toLowerCase())){
+    isPangram = checkPangram(tryword.innerHTML);
+    addToTotalScore(calculateWordScore(tryword.innerHTML, isPangram));
     showScore.innerHTML = totalScore;
-    showDiscoveredWord(tryword);
-    discoveredWords.push(tryword.value.toLowerCase());
+    showDiscoveredWord(tryword.innerHTML);
+    discoveredWords.push(tryword.innerHTML.toLowerCase());
     $("#good").fadeIn(1000);
     $("#good").fadeOut(500);
+    clearInput();
   }else{
     $("#invalid-word").fadeIn(1000);
     $("#invalid-word").fadeOut(500);
-    shakeInput();
+    wrongInput();
   }
-  shakeInput();
-  tryword.value = '';
 }
 
 //if word was valid, display it 
@@ -194,7 +195,7 @@ function showDiscoveredWord(input){
     } else{
       var listword = document.createElement("LI");
       var pword = document.createElement("P");
-      pword.innerHTML = input.value; 
+      pword.innerHTML = input; 
       listword.appendChild(pword);
       discWords.appendChild(listword);
     }
@@ -208,7 +209,7 @@ function addToTotalScore(score) {
 
 //calculates the score of input "input" and also adjusts if "input" is a pangram 
 function calculateWordScore(input, isPangram) {
-  let len = input.value.length;
+  let len = input.length;
   let returnScore = 1; 
   if(len > 4) {
     returnScore = len;
@@ -226,7 +227,7 @@ function checkPangram(input) {
   var containsCount = 0;
   var containsAllLetters = new Boolean(false);
   for(i = 0; i < 7; i++) {
-    if(input.value.includes(letters[i])) {
+    if(input.includes(letters[i])) {
       containsCount++;
     }
   }
@@ -272,8 +273,8 @@ function input_from_keyboard(event) {
   //validation for just alphabet letters input
   if(event.keyCode >= 97 && event.keyCode <= 122 ||
     event.keyCode >=65 && event.keyCode <=90) {
-    tryword.value = tryword.value + String.fromCharCode(event.keyCode).toLowerCase();
-    if(checkIncorrectLetters(tryword.value)) {
+    tryword.innerHTML = tryword.innerHTML+ String.fromCharCode(event.keyCode).toLowerCase();
+    if(checkIncorrectLetters(tryword.innerHTML)) {
       tryword.style.color = 'grey';
     }
   }
