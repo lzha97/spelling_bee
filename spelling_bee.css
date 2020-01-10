@@ -18,12 +18,11 @@
 
   #hexGrid {
     display: grid;
-    grid-gap:10px;
+    grid-gap:6px;
     grid-template-columns: repeat(4,fr);
-    width: 350px;
+    width: 250px;
     margin: 0 auto;
-    font-family: 'Raleway', sans-serif;
-    font-size: 15px;
+    font-size:.9em;
     list-style-type: none;
     overflow:hidden;
     
@@ -84,13 +83,14 @@
 
   .hex p {
     width: 100%;
-    padding: 42%;
+    padding: 38%;
     box-sizing:border-box;
     background-color:transparent;
-    font-weight: 550;
-    font-size:30px;
+    font-weight: 800;
+    font-size:1.4em;
     color:black;
-    font: bold;
+    font-family: 'Open Sans', sans-serif;
+    
   }
 /*** HEX HOVER *****************************************************************/
   .hexLink:hover p, .hexLink:focus p{
@@ -105,8 +105,8 @@
   
   #hexGrid{
     grid-template-columns: repeat(6,2fr);
-    padding-bottom: 7.4%;
-    margin-bottom:40px;
+    padding-bottom: 5.4%;
+    margin-bottom:2vh;
   }
   .hex:nth-child(5n+1){ /* first hexagon of odd rows */
     grid-column-start: 2;
@@ -122,28 +122,30 @@
     height:50px; 
     text-align: center;  
     font-family: 'Open Sans', sans-serif;
-    font-size: 35px;
+    font-size: 1.5rem;
     padding-top:3px;
   }
 
   #cursor {
     font-family: 'Open Sans', sans-serif;
-    font-size: 35px;
+    font-size: 1.6rem;
     font-weight: 100;
+    height:6vw;
   
   }
   .cursor {
     position: relative;
     margin: 0 auto;
-    margin-bottom:40px; 
+    margin-bottom:10px; 
   }
 
 /*** TEXT **********************************************************************/
 h1 {
   text-align: center;
-  margin-top:50px; 
-  margin-bottom:50px; 
-  font-family: 'Open Sans', sans-serif;
+  margin-top:4vh; 
+  margin-bottom:1vhpx; 
+  font-size: 1.5rem;
+  font-family: 'Roboto Slab', serif;
 }
 
 .scoreText {
@@ -166,17 +168,28 @@ ul {
 
 
 /*** BUTTONS *******************************************************************/
+#shuffle_button {
+  padding: 10px 10px;
+}
+
+.button_container {
+ display:-webkit-inline-flex; 
+ margin-bottom:3vh; 
+ width: 300px;
+ height: 10%;
+
+}
 .button {
   background-color: white; 
   border: 2px solid #e7e7e7;
   margin: 0 auto;
   color: black;
-  padding: 15px 35px;
+  padding: 0px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  border-radius: 30px;
+  font-size: .8em;
+  border-radius:30px;
   cursor: pointer;
 }
 
@@ -190,22 +203,21 @@ ul {
 
 #too-short{
   display:none;
-  width: 60px;
 }
 #invalid-word{
   display:none;
-  width: 75px;
+  
 }
 #already-found{
   display:none;
-  width: 85px;
+
 }
 #miss-center{
   display:none;
-  width:125px;
+
 }
 #good{
-  display:none;
+  display:None;
   background-color:white; 
   color:black; 
   border:1px solid rgb(179, 177, 177);
@@ -219,5 +231,5 @@ ul {
   justify-content:center;
   border-radius:3px;
   font-family: 'Calibri Light',sans-serif;
-  font-size: 13px;
+  font-size: .6em;
 }

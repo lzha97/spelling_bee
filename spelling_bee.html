@@ -8,7 +8,7 @@
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Roboto+Slab:300,400,500,600,700&display=swap" rel="stylesheet">
     </head>
     <body onload="get_valid_words()" onkeydown="input_from_keyboard(event)">
         <h1> Spelling Bee Game </h1>
@@ -23,7 +23,7 @@
         </div>
 
         <!-- INPUT WORD -->
-        <div class="cursor" style="height:70px;">
+        <div class="cursor">
             <p id="inputword" style="display:flex;"> <span id="testword"></span><span id="cursor">|</span></p>
         </div>
         <!-- <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:360px;"> -->
@@ -32,10 +32,10 @@
           <div style="display:flex; flex-direction:column; align-items:center;">
             <ul id="hexGrid"></ul>
         
-            <div class="button_container" style="display:-webkit-inline-flex; margin-bottom:30px; width: 50%;">
+            <div class="button_container">
               <button id="submit_button" type="button" class="button" onclick="submitWord()">Enter</button>
-              <button id="shuffle_button" style="padding: 15px 20px;" type="button" class="button" onclick="shuffleLetters()">
-                <img src="shuffle_icon.png" width="20px">
+              <button id="shuffle_button" type="button" class="button" onclick="shuffleLetters()">
+                <img src="shuffle_icon.png" style="width:1.2em">
               
               </button>
               <button id="delete_button" type="button" class="button" onclick="deleteLetter()">Delete</button>
