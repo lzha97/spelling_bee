@@ -149,18 +149,30 @@ function deleteLetter(){
   }
 }
 
-function wrongInput(){
+function wrongInput(selector){
+  $(selector).fadeIn(1000);
+  $(selector).fadeOut(500);
   $("#cursor").hide();
   $( "#testword" ).effect("shake", {times:2.5}, 450, function(){
       clearInput();
       $("#cursor").show();
     } );
 
-  //clearInput();
+}
+
+function rightInput(selector){
+  $(selector).fadeIn(1500).delay(500).fadeOut(1500);
+  
+  clearInput();
 }
 
 function clearInput(){
   $("#testword").empty();
+}
+
+function showPoints(pts){
+  $(".points").html("+" + pts);
+
 }
 //check if the word is valid and clear the input box
 //word must be at least 4 letters
@@ -175,38 +187,41 @@ function submitWord(){
   var showScore = document.getElementById("totalScore");
 
   if(tryword.innerHTML.length < 4){ 
-    $("#too-short").fadeIn(1000);
-    $("#too-short").fadeOut(500);
-    wrongInput();
+    wrongInput("#too-short");
   }else if(discoveredWords.includes(tryword.innerHTML.toLowerCase())){
-    $("#already-found").fadeIn(1000);
-    $("#already-found").fadeOut(500);
-    wrongInput();
+    wrongInput("#already-found");
   }else if(!tryword.innerHTML.toLowerCase().includes(centerLetter.toLowerCase())){
-    $("#miss-center").fadeIn(1000);
-    $("#miss-center").fadeOut(500);
-    wrongInput();
+    wrongInput("#miss-center");
 
   }else if(validWords.includes(tryword.innerHTML.toLowerCase())){
 
     var isPangram = checkPangram(tryword.innerHTML);
     score = calculateWordScore(tryword.innerHTML, isPangram);
     addToTotalScore(score);
-    //showScore.innerHTML = totalScore;
     console.log("totalscore: " + totalScore);
     
     showDiscoveredWord(tryword.innerHTML);
     numFound++;
     document.getElementById("numfound").innerHTML = numFound;
     document.getElementById("score").innerHTML = totalScore;
-    $("#good").fadeIn(1000);
-    $("#good").fadeOut(500);
-    clearInput();
+
+    var l = tryword.innerHTML.length;
+    if(isPangram){
+      rightInput("#pangram");
+      showPoints(17);
+    }else if(l < 5){
+      rightInput("#good");
+      showPoints(1);
+    }else if(l<7){
+      rightInput("#great");
+      showPoints(l);
+    }else{
+      rightInput("#amazing");
+      showPoints(l);
+    }
 
   }else{
-    $("#invalid-word").fadeIn(1000);
-    $("#invalid-word").fadeOut(500);
-    wrongInput();
+    wrongInput("#invalid-word");
   }
 }
 

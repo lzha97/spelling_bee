@@ -237,6 +237,29 @@ ul {
   color:black; 
   border:1px solid rgb(179, 177, 177);
 }
+
+#great{
+  display:None;
+  background-color:white; 
+  color:black; 
+  border:1px solid rgb(179, 177, 177);
+}
+
+#pangram{
+  display:None;
+  background-color:white; 
+  color:black; 
+  border:1px solid rgb(179, 177, 177);
+}
+
+#amazing{
+  display:None;
+  background-color:white; 
+  color:black; 
+  border:1px solid rgb(179, 177, 177);
+}
+
+
 .notifications {
   background-color:black; 
   color:white; 
