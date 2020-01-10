@@ -26,26 +26,29 @@ def lambda_handler(event, context):
                         letterset = frozenset(k)
                         pangram_set.add(letterset)
                     
-            todays_letters = list(random.choice(list(pangram_set)))
-    
+            
             res = [] 
-            score =0
-            center_letter = todays_letters[3]
-            pangram = ''
-            for w in worddict: 
-                flag = True
-                for c in w: 
-                    if c not in todays_letters: 
+            
+            while(len(res) < 15):
+                res = []
+                todays_letters = list(random.choice(list(pangram_set)))
+                score = 0
+                center_letter = todays_letters[3]
+                pangram = ''
+                for w in worddict: 
+                    flag = True
+                    for c in w: 
+                        if c not in todays_letters: 
+                            flag = False 
+                    if center_letter not in w: 
                         flag = False 
-                if center_letter not in w: 
-                    flag = False 
-                if flag == True:
-                    res.append(w)
-                    if len(w) == 4: score +=1
-                    elif is_pangram(w): 
-                        score +=17
-                        pangram = w
-                    elif len(w) > 4: score += len(w)
+                    if flag == True:
+                        res.append(w)
+                        if len(w) == 4: score +=1
+                        elif is_pangram(w): 
+                            score +=17
+                            pangram = w
+                        elif len(w) > 4: score += len(w)
     
             s3 = boto3.client('s3')
             bucket_name = os.environ['BUCKET_NAME']
