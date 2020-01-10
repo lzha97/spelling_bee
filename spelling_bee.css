@@ -128,9 +128,10 @@
 
   #cursor {
     font-family: 'Open Sans', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 100;
     height:6vw;
+    color: rgb(255, 187, 0);
   
   }
   .cursor {
