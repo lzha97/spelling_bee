@@ -162,15 +162,13 @@ function submitWord(){
   var centerLetter = document.getElementById('center-letter').firstChild.innerHTML;
 
   let score = 0;
-  var isPangram = new Boolean(false);
+  var isPangram = false;
   var showScore = document.getElementById("totalScore");
 
   if(tryword.innerHTML.length < 4){ 
-    
     $("#too-short").fadeIn(1000);
     $("#too-short").fadeOut(500);
     wrongInput();
-    
   }else if(discoveredWords.includes(tryword.innerHTML.toLowerCase())){
     $("#already-found").fadeIn(1000);
     $("#already-found").fadeOut(500);
@@ -179,15 +177,20 @@ function submitWord(){
     $("#miss-center").fadeIn(1000);
     $("#miss-center").fadeOut(500);
     wrongInput();
+
   }else if(validWords.includes(tryword.innerHTML.toLowerCase())){
-    isPangram = checkPangram(tryword.innerHTML);
-    addToTotalScore(calculateWordScore(tryword.innerHTML, isPangram));
+
+    var isPangram = checkPangram(tryword.innerHTML);
+    score = calculateWordScore(tryword.innerHTML, isPangram);
+    addToTotalScore(score);
     showScore.innerHTML = totalScore;
+    
     showDiscoveredWord(tryword.innerHTML);
     discoveredWords.push(tryword.innerHTML.toLowerCase());
     $("#good").fadeIn(1000);
     $("#good").fadeOut(500);
     clearInput();
+    
   }else{
     $("#invalid-word").fadeIn(1000);
     $("#invalid-word").fadeOut(500);
@@ -220,14 +223,18 @@ function addToTotalScore(score) {
 
 //calculates the score of input "input" and also adjusts if "input" is a pangram 
 function calculateWordScore(input, isPangram) {
+  
   let len = input.length;
   let returnScore = 1; 
   if(len > 4) {
-    returnScore = len;
+    if(isPangram) {
+      returnScore = len + 7;
+      
+    }else{
+      returnScore = len;
+    }
   }
-  if(isPangram) {
-    returnScore = len + 7;
-  }
+  console.log('score ' + returnScore)
   return returnScore;
 }
 
@@ -236,14 +243,14 @@ function checkPangram(input) {
   
   var i;
   var containsCount = 0;
-  var containsAllLetters = new Boolean(false);
+  var containsAllLetters = false;
   for(i = 0; i < 7; i++) {
     if(input.includes(letters[i])) {
       containsCount++;
     }
   }
   if(containsCount == 7) {
-    containsAllLetters = new Boolean(true);
+    containsAllLetters = true;
   }
   console.log("isPangram?: " + containsAllLetters);
   return containsAllLetters;
