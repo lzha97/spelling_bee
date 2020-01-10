@@ -6,21 +6,41 @@
         <title>Spelling Bee</title>
         <link rel="stylesheet" href = "spelling_bee.css">
         <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src = "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
     </head>
     <body onload="get_valid_words()" onkeydown="input_from_keyboard(event)">
         <h1> Spelling Bee Game </h1>
-        <!-- <p>Enter Letters:</p>  -->
+
+        <!-- NOTIFICATIONS -->
+        <div class="container" style="height:50px;">
+            <p id="too-short" class="notifications">Too Short</p>
+            <p id="good" class="notifications">Good!</p>
+            <p id="already-found" class="notifications">Already Found</p>
+            <p id="invalid-word" class="notifications">Invalid Word</p>
+            <p id="miss-center" class="notifications">Missing Center Letter</p>
+        </div>
+
+        <!-- INPUT WORD -->
         <div class="cursor">
             <input id="testword" type="text" class="rq-form-element inputBar"/>
         </div>
         <!-- <div class="cursor" style="height:40px; text-align:center; display:flex-inline; justify-content:center; margin-bottom:360px;"> -->
-        <ul style="justify-content:center" id="hexGrid">
-          
-        </ul style="justify-content:center">
-          <button type="button" class="button" onclick="submitWord()">Submit Word</button>
-          <button type="button" class="button" onclick="shuffleLetters()">Shuffle</button>
-          <button type="button" class="button" onclick="deleteLetter()">Delete</button>
-            <!--<i style="align-self:center;"></i>-->
+        
+        <!-- HEXAGON GRID -->
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <ul id="hexGrid"></ul>
+        
+            <div class="button_container" style="display:-webkit-inline-flex; margin-bottom:30px; width: 50%;">
+              <button id="submit_button" type="button" class="button" onclick="submitWord()">Enter</button>
+              <button id="shuffle_button" style="padding: 15px 20px;" type="button" class="button" onclick="shuffleLetters()">
+                <img src="shuffle_icon.png" width="20px">
+              
+              </button>
+              <button id="delete_button" type="button" class="button" onclick="deleteLetter()">Delete</button>
+                <!--<i style="align-self:center;"></i>-->
+              
+            </div>
         </div>
 
         <div class="scoreText">Score: 

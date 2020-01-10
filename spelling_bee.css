@@ -173,22 +173,21 @@ ul {
 
 /*** BUTTONS *******************************************************************/
 .button {
-  background-color: #e7e7e7;
-  border: none;
+  background-color: white; 
+  border: 2px solid #e7e7e7;
   margin: 0 auto;
   color: black;
-  padding: 15px 32px;
+  padding: 15px 35px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  width: 150px;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
 }
 
 .button:hover {
-  background-color: white; /* Green */
+  background-color: #e7e7e7;
   color: black;
   border: 2px solid #e7e7e7;
 }
@@ -215,4 +214,46 @@ ul {
 }
 .shake {
     display:inline-block
+}
+
+#too-short{
+  display:none;
+  width: 60px;
+}
+#invalid-word{
+  display:none;
+  width: 75px;
+}
+#already-found{
+  display:none;
+  width: 85px;
+}
+#miss-center{
+  display:none;
+  width:125px;
+}
+
+#good{
+  display:none;
+  background-color:white; 
+  color:black; 
+  border:1px solid rgb(179, 177, 177);
+}
+
+.notifications {
+  background-color:black; 
+  color:white; 
+  display:flex;
+  padding:5px;
+  align-items:center;
+  justify-content:center;
+  border-radius:3px;
+  font-family: 'Calibri Light',sans-serif;
+  font-size: 13px;
+}
+
+.container {
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
