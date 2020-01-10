@@ -2,8 +2,8 @@
 
 ### Project Origin
 This project is based off of NYT's [Spelling Bee Puzzles](https://www.nytimes.com/puzzles/spelling-bee).
-<br>You must have NYT puzzle membership to play the game 
-<br>Sabrina and I loved playing this game so much that we decided to build it for ourselves. 
+<br>You must have NYT puzzle membership to play the game on New York Times.
+<br>Sabrina and I loved playing this game so much during a semester long study abroad experience that we decided to build it for ourselves. 
 
 
 Here is an example of what it looks like:
