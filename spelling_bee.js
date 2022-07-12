@@ -208,7 +208,7 @@ function submitWord(){
     var l = tryword.innerHTML.length;
     if(isPangram){
       rightInput("#pangram");
-      showPoints(17);
+      showPoints(1+7);
     }else if(l < 5){
       rightInput("#good");
       showPoints(1);
