@@ -45,10 +45,10 @@ def lambda_handler(event, context):
                     if flag == True:
                         res.append(w)
                         if len(w) == 4: score +=1
-                        elif is_pangram(w): 
-                            score +=17
-                            pangram = w
                         elif len(w) > 4: score += len(w)
+                        if is_pangram(w): 
+                            score +=7
+                            pangram = w
     
             s3 = boto3.client('s3')
             bucket_name = os.environ['BUCKET_NAME']
